@@ -1,0 +1,92 @@
+buildscript {
+    ext {
+        // springBootVersion = '2.0.1.RELEASE' // Latest GA Spring Boot version at time of writing.
+        springBootVersion = '1.5.12.RELEASE' // Latest GA Spring Boot version at time of writing.
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    group = 'com.developer'
+    baseName = 'spring-boot-soap-service'
+    version = '0.0.1-SNAPSHOT'
+    description = "spring boot soap service demo"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+ext {
+    springCloudVersion = 'Edgware.SR3'
+    pivotalSpringCloudVersion = '1.6.3.RELEASE'
+}
+
+//jaxb {
+//
+//    System.setProperty('javax.xml.accessExternalSchema', 'all') // To solve external schema dependencies
+//    xsdDir = "src/main/resources/schema/" // xsd directory
+//    xjc {
+//        taskClassname = "org.jvnet.jaxb2_commons.xjc.XJC2Task" // This is for setter plugin
+//        args = ["-Xsetters","-Xsetters-mode=direct"]
+//    }
+//}
+
+dependencies {
+    // spring
+    compile "org.springframework.boot:spring-boot-starter-web-services"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+
+    compile "org.codehaus.mojo:jaxb2-maven-plugin:1.6"
+    compile "wsdl4j:wsdl4j:1.6.3"
+    compile "com.google.code.gson:gson:2.8.1"
+
+    // swagger
+    compile "io.springfox:springfox-swagger2:2.8.0"
+    compile "io.springfox:springfox-swagger-ui:2.8.0"
+
+//    jaxb 'org.glassfish.jaxb:jaxb-xjc:2.2.11'
+//    jaxb 'org.glassfish.jaxb:jaxb-runtime:2.2.11'
+//    xjc  'com.sakx:xjc-plugin:0.0.0'
+
+
+    compileOnly "org.projectlombok:lombok"
+
+    runtime "org.springframework.boot:spring-boot-devtools"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+
+}
+
+dependencyManagement {
+    imports {
+        // Sets the versions of Spring Cloud components
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        // this is critical, set version for pivotal's scs components
+        mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:${pivotalSpringCloudVersion}"
+    }
+}
+
+repositories {
+
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+    maven { url "http://repo.maven.apache.org/maven2" }
+}
+
