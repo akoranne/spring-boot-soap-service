@@ -127,7 +127,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-s
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/soap/web/services/example/SpringBootTutorialSoapWebServicesApplication.java
+### /src/main/java/com/in28minutes/springboot/soap/web/services/example/SpringBootSoapServiceApplication.java
 
 ```java
 package com.in28minutes.springboot.soap.web.services.example;
@@ -136,10 +136,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootTutorialSoapWebServicesApplication {
+public class SpringBootSoapServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootTutorialSoapWebServicesApplication.class, args);
+		SpringApplication.run(SpringBootSoapServiceApplication.class, args);
 	}
 }
 ```
