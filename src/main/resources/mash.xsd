@@ -1,7 +1,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.developer.com/xml/generated"
            targetNamespace="http://www.developer.com/xml/generated" elementFormDefault="qualified">
 
-    <xs:element name="StudentDetailsRequest">
+    <xs:element name="OfficerDetailsRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="name" type="xs:string"/>
@@ -9,21 +9,21 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="StudentDetailsResponse">
+    <xs:element name="OfficerDetailsResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Student" type="tns:Student"/>
+                <xs:element name="Officer" type="tns:Officer"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="Student">
+    <xs:complexType name="Officer">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="grade" type="xs:int"/>
+            <xs:element name="grade" type="xs:string"/>
             <xs:element name="address" type="xs:string"/>
-            <xs:element name="passportNumber" type="xs:string"/>
+            <xs:element name="rank" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 

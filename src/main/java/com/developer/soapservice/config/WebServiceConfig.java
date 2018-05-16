@@ -23,18 +23,18 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/service/*");
     }
 
-    @Bean(name = "studentDetailsWsdl")
+    @Bean(name = "officerDetailsWsdl")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema schema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("StudentDetailsPort");
-        wsdl11Definition.setLocationUri("/service/student-details");
+        wsdl11Definition.setPortTypeName("OfficerDetailsPort");
+        wsdl11Definition.setLocationUri("/service/officer-details");
         wsdl11Definition.setTargetNamespace("http://www.developer.com/xml/generated");
         wsdl11Definition.setSchema(schema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema studentSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("school.xsd"));
+    public XsdSchema officerSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("mash.xsd"));
     }
 }
